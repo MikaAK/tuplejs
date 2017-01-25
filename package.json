@@ -1,0 +1,35 @@
+{
+  "name": "tuplejs",
+  "version": "1.0.0",
+  "description": "Tuples in javascript!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikaAK/tuplejs.git"
+  },
+  "keywords": [
+    "tuple",
+    "fp",
+    "functional"
+  ],
+  "author": "Mika Kalathil <MikaAK>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MikaAK/tuplejs/issues"
+  },
+  "homepage": "https://github.com/MikaAK/tuplejs#readme",
+  "dependencies": {
+    "ramda": "^0.22.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.13.2",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-stage-2": "^6.13.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}
