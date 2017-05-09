@@ -24,7 +24,7 @@ const throwTupleTypeError = (types, tuple) => {
 
 const tupleTypesMatch = (types, tuple) => types.every(((type, i) => R.is(type, tuple[i])))
 
-const Tuple = function(...types) {
+export const Tuple = function(...types) {
   const createTuple = function (...tuple) {
     const map = R.compose(R.apply(createTuple), R.map(R.__, tuple))
     const reduce = R.reduce(R.__, R.__, tuple)
