@@ -22,7 +22,7 @@ const throwTupleTypeError = (types, tuple) => {
   throw new TypeError(`Tuple types do not match${tupleTypeValueString(types, tuple)}`)
 }
 
-const tupleTypesMatch = (types, tuple) => types.every(((type, i) => R.is(type, tuple[i])))
+const tupleTypesMatch = (types, tuple) => types.every(((type, i) => type.toLowerCase() === 'any' || R.is(type, tuple[i])))
 
 export const Tuple = function(...types) {
   const createTuple = function (...tuple) {

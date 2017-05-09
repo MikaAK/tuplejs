@@ -9,7 +9,7 @@ $ npm i --save touplejs
 ### Usage
 ```javascript
 // ResponseStatus('ok', {data: {someData: 3}})
-const ResponseStatus = Tuple(String, Object)
+const ResponseStatus = Tuple(String, 'any')
 
 const apiResponse = ResponseStatus('ok', {data: 'asdf'})
 const serverResp = ResponseStatus('error', {error: 'there was an error'})
