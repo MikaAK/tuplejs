@@ -1,5 +1,5 @@
 {
-  "name": "fp-tuplejs",
+  "name": "fp-tuple",
   "version": "1.0.1",
   "description": "Tuples in javascript!",
   "main": "dist/tuple.js",
