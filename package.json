@@ -2,9 +2,10 @@
   "name": "tuplejs",
   "version": "1.0.0",
   "description": "Tuples in javascript!",
-  "main": "index.js",
+  "main": "dist/tuple.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src -d dist"
   },
   "repository": {
     "type": "git",
@@ -22,13 +23,13 @@
   },
   "homepage": "https://github.com/MikaAK/tuplejs#readme",
   "dependencies": {
+    "fantasy-land": "^3.2.0",
     "ramda": "^0.22.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-core": "^6.13.2",
-    "babel-preset-es2015": "^6.13.2",
-    "babel-preset-stage-2": "^6.13.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "chai": "^3.5.0",
     "mocha": "^3.0.2"
   }
