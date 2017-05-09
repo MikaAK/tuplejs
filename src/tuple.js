@@ -4,7 +4,9 @@ import fl from 'fantasy-land'
 const isNotSameLength = (types, tuple) => types.length !== tuple.length
 const commaSeperate = R.join(', ')
 const typeNamesString = R.compose(commaSeperate, R.pluck('name'))
-const tupleToString = R.compose(commaSeperate, R.map(R.toString))
+const whenNotNil = R.when(R.complement(R.isNil))
+const tupleToString = R.compose(commaSeperate, R.map(whenNotNil(R.toString)))
+const notEquals = R.complement(R.equals)
 
 const tupleTypeValueString = (types, tuple) => {
   return `\nTypes: (${typeNamesString(types)})\nValues: (${tupleToString(tuple)})`
@@ -22,11 +24,16 @@ const throwTupleTypeError = (types, tuple) => {
   throw new TypeError(`Tuple types do not match${tupleTypeValueString(types, tuple)}`)
 }
 
-const typeAny = R.when(R.is(String), R.toLower)
-const tupleTypesMatch = (types, tuple) => types.every((type, i) => typeAny(type) === 'any' || R.is(type, tuple[i]));
+const lowerString = R.when(R.is(String), R.toLower)
+const isStringAny = R.compose(R.equals('any'), lowerString)
+const tupleTypesMatch = (types, tuple) => types.every((type, i) => isStringAny(type) || R.is(type, tuple[i]));
+const isTupleNilError = (types, tuple) => tuple.some((item, i) => R.isNil(item) && !isStringAny(types[i]))
 
 export const Tuple = function(...types) {
   const createTuple = function (...tuple) {
+    if (!tuple)
+      tuple = []
+
     const map = R.compose(R.apply(createTuple), R.map(R.__, tuple))
     const reduce = R.reduce(R.__, R.__, tuple)
     const equals = (compTuple) => {
@@ -36,11 +43,11 @@ export const Tuple = function(...types) {
       return R.equals(thisTupleItems, compareItems)
     }
 
-    if (R.any(R.isNil, tuple))
-      throwTupleNilError(tuple)
-
     if (isNotSameLength(types, tuple))
       throwTupleArityError(types.length)
+
+    if (isTupleNilError(types, tuple))
+      throwTupleNilError(tuple)
 
     if (!tupleTypesMatch(types, tuple))
       throwTupleTypeError(types, tuple)
