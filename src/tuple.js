@@ -46,6 +46,7 @@ export const Tuple = function(...types) {
       throwTupleTypeError(types, tuple)
 
     return Object.freeze({
+      ...Object.assign({}, tuple),
       [Symbol.iterator]() {
         const iterator = {
           index: 0,
